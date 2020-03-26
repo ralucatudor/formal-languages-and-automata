@@ -25,6 +25,6 @@ bbbbabbb\
 bbbbbaaa\
 bbbbbabb\
 bbbbbbab\
-bbbbbbba\
+bbbbbbba
 
 Note! I was able to plot this finite state machine automatically (see [source code](draw-finite-state-machine/app.py)). I used ***Graphviz*** - installed the Graphviz package and added the path to the system. My Python file generated .. file --- rendering the image
