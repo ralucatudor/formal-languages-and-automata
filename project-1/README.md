@@ -13,7 +13,7 @@ For the automaton in the image, we have:\
 aabbaaabaa -> is accepted\
 aabbaaabaabbbbbbbbb -> is not accepted
 
-and the first 100 generated words are:
+and the first 100 generated words are:\
 ab\
 ba\
 aaab\
