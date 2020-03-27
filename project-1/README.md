@@ -7,9 +7,12 @@
 - Generating the shortest 100 words accepted by an automaton.
 
 <img align="right" src="draw-finite-state-machine/automaton.gv.png">
- <!--- ![graph](draw-finite-state-machine/automaton.gv.png) --> 
+### Example
+For the automaton in the image below, we have:
+aabbaaabaa -> is accepted
+aabbaaabaabbbbbbbbb -> is not accepted
 
-
+and the first 100 generated words are:
 ab\
 ba\
 aaab\
