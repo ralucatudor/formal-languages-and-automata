@@ -30,5 +30,5 @@ bbbbbabb\
 bbbbbbab\
 bbbbbbba
 
-Note! I was able to plot this finite state machine automatically (see [source code](draw-finite-state-machine/app.py)). I used ***Graphviz*** - installed the Graphviz package and then added its `bin/` subdirectory containing the layout commands for rendering graph descriptions (dot, circo, neato, etc.) in my systems’ path.\
+Note! I was able to plot this finite state machine automatically (see [source code](draw-finite-state-machine/app.py)) in **Python**. I used ***Graphviz*** - installed the Graphviz package and then added its `bin/` subdirectory containing the layout commands for rendering graph descriptions (dot, circo, neato, etc.) in my systems’ path.\
 My Python file generated a graph description in the DOT language. I used the render()-method to save the source code and render it with the default layout program (dot) => resulting (in my case) the above PNG file.
