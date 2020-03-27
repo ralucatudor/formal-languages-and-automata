@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1585333580 source:c:\users\raluca\desktop\grupa 135\semestrul ii\limbaje formale si automate\project-1\main.cpp
+	<iostream>
+	<fstream>
+	"automaton.hpp"
+
+1585333754 c:\users\raluca\desktop\grupa 135\semestrul ii\limbaje formale si automate\project-1\automaton.hpp
+	<iostream>
+	<fstream>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+	<set>
+	<queue>
+	<algorithm>
+
+1585333096 source:c:\users\raluca\desktop\grupa 135\semestrul ii\limbaje formale si automate\project-1\automaton.cpp
+	"automaton.hpp"
+
