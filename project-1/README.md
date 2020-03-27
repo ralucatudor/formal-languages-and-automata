@@ -9,9 +9,10 @@
 <img align="right" src="draw-finite-state-machine/automaton.gv.png">
 
 ### Example
+As seen in input.txt and output.txt...\
 For the automaton in the image, we have:\
-aabbaaabaa -> is accepted\
-aabbaaabaabbbbbbbbb -> is not accepted
+string "aabbaaabaa" -> is accepted\
+string "aabbaaabaabbbbbbbbb" -> is not accepted
 
 and the first 100 generated words are:\
 ab\
