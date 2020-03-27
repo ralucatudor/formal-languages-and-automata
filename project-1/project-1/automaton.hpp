@@ -15,7 +15,7 @@ class Automaton
     std::unordered_set<int> final_states;
     std::vector<std::unordered_map<char, std::vector<int>>> transitions;
     std::vector<std::vector<int>> reverseTransitions;   // helper vector for constructing the isDeadState vector
-    std::vector<bool> isDeadState;  // isDeadState[q] = 1 if I can not reach a final state from q
+    std::vector<bool> isDeadState;  // isDeadState[q] = 1 if I cannot reach a final state from q
 public:
     Automaton();
     Automaton(int);

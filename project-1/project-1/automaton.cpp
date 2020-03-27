@@ -78,7 +78,7 @@ bool Automaton::isAccepted(std::string word)
                 }
             }
         }
-        // clearing the queue
+
         for(auto& node : temp)
             inQueue[node] = 0;
 
@@ -104,7 +104,7 @@ std::vector<std::string> Automaton::smallestAcceptedWords(int total_words) const
 
     int nr_word = 0;
 
-    // The seen set behaves similar to a matrix seen, where seen[subword][node] = 1
+    // The seen set behaves similarly to a matrix seen, where seen[subword][node] = 1
     // if I have obtained the string subword having node as my current state.
     std::set<std::pair<std::string, int>> seen; // using unordered_set throws an error :(
     std::vector<std::string> accepted_words;
