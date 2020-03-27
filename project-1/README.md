@@ -7,9 +7,10 @@
 - Generating the shortest 100 words accepted by an automaton.
 
 <img align="right" src="draw-finite-state-machine/automaton.gv.png">
+
 ### Example
-For the automaton in the image below, we have:
-aabbaaabaa -> is accepted
+For the automaton in the image, we have:\
+aabbaaabaa -> is accepted\
 aabbaaabaabbbbbbbbb -> is not accepted
 
 and the first 100 generated words are:
@@ -20,9 +21,6 @@ aaba\
 abaa\
 abbb\
 ...\
-bbbabbaa\
-bbbabbbb\
-bbbbaaab\
 bbbbaaba\
 bbbbabaa\
 bbbbabbb\
@@ -31,4 +29,5 @@ bbbbbabb\
 bbbbbbab\
 bbbbbbba
 
-Note! I was able to plot this finite state machine automatically (see [source code](draw-finite-state-machine/app.py)). I used ***Graphviz*** - installed the Graphviz package and added the path to the system. My Python file generated .. file --- rendering the image
+Note! I was able to plot this finite state machine automatically (see [source code](draw-finite-state-machine/app.py)). I used ***Graphviz*** - installed the Graphviz package and then added its `bin/` subdirectory containing the layout commands for rendering graph descriptions (dot, circo, neato, etc.) in my systems’ path.\
+My Python file generated a graph description in the DOT language. I used the render()-method to save the source code and render it with the default layout program (dot) => resulting (in my case) the above PNG file.
