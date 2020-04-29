@@ -49,8 +49,8 @@ std::istream& operator >> (std::istream& in, NFA& automaton)
 
 std::ostream& operator << (std::ostream& out, const NFA& automaton)
 {
-    out << "Number of states = " << automaton.transitions.size() - 1 << "\n";
-    for (int state = 1; state < automaton.transitions.size(); ++state) {
+    out << "Number of states = " << (int)automaton.transitions.size() - 1 << "\n";
+    for (int state = 1; state < (int)automaton.transitions.size(); ++state) {
         for (auto& map : automaton.transitions[state]) {
             for (auto& next_state : map.second) {
                 out << state << " --" << map.first << "--> " << next_state << '\n';
@@ -110,7 +110,6 @@ NFA::operator DFA()
     std::vector <std::map <char, int>> new_transitions;
     new_transitions.emplace_back(); // because the state count starts at 1, therefore pos zero is not used :( )
 
-
     int new_start_state = start_state;
     std::set <int> new_final_states; 
 
@@ -125,7 +124,7 @@ NFA::operator DFA()
     if (final_states.find(start_state) != final_states.end())    // it is final state
         new_final_states.insert(current_index);
     state_subset_index[aux] = current_index++;
-    new_transitions.push_back(std::map<char, int>());
+    new_transitions.emplace_back(std::map<char, int>());
     aux.clear();
 
     while (!queue.empty()) {
@@ -149,7 +148,7 @@ NFA::operator DFA()
                         new_final_states.insert(state_subset_index[aux]);
                 }
                 
-                new_transitions.push_back(std::map<char, int>());
+                new_transitions.emplace_back(std::map<char, int>());
                 queue.push(aux);
             }  
             new_transitions[state_subset_index[current_states]][input_symbol] = state_subset_index[aux];

@@ -21,7 +21,9 @@ int main()
 
     outputFile << "After transformation of NFA to DFA:\n" << dfa << '\n';
 
-    //utputFile << "After DFA minimization:\n" << dfa << '\n';
+    dfa.minimize();
+
+    outputFile << "After DFA minimization:\n" << dfa << '\n';
 
     inputFile.close();
     outputFile.close();

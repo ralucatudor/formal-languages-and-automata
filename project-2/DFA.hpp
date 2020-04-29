@@ -13,6 +13,11 @@ class DFA
     std::set<int> final_states;
 
     std::vector<std::map<char, int>> transitions;
+
+    std::vector <bool> isDeadState;
+    std::vector <bool> isUnreachableState;
+
+    static const std::string SIGMA;
 public:
     DFA();
     DFA(std::vector <std::map <char, int>>, int, std::set <int>);
@@ -20,7 +25,11 @@ public:
     friend std::istream& operator >> (std::istream&, DFA&);   
     friend std::ostream& operator << (std::ostream&, const DFA&);
 
-    void removeUnreachableStates();
+    void markUnreachableStates();
+
+    void markDeadStates();
+
+    bool isReachableState(int) const;
 
     void minimize();
 };
