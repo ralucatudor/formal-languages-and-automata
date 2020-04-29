@@ -127,13 +127,42 @@ void DFA::minimize()
             }
         }
     }
+  
+    std::vector <std::set<int>> groups;
+    std::vector <bool> seen(nr_states, false);
+    for (int state = 1; state < nr_states; ++state) {
+        if (!seen[state]) {
+            seen[state] = true;
+            groups.push_back({state});
+            int current_pos = groups.size() - 1;    // current group position
 
-    for (int q = 1; q < nr_states; ++q) {
-		for (int r = q + 1; r < nr_states; ++r) {
-            if (areEquivalent[q][r])
-                std::cout << q << ' ' << r << '\n';
+            std::queue <int> q; // queue for finding out the whole group of eqv. states with 'state'
+            q.push(state);      // first I have just state
+            while (!q.empty()) {
+                int q1 = q.front();
+                q.pop();
+                // iterate through all the eqv. states with q1
+                for (int q2 = q1 + 1; q2 < nr_states; ++q2) {
+                    if (areEquivalent[q1][q2]) {
+                        if (!seen[q2]) {
+                            seen[q2] = true;
+                            q.push(q2);
+                            groups[current_pos].insert(q2);
+                        }
+                    }
+                }
+
+            }
         }
     }
+
+    for (auto& new_state : groups) {
+        for (auto& elem : new_state) {
+            std::cout << elem << ' ';
+        }
+        std::cout << '\n';
+    }
+
 
 
 }
