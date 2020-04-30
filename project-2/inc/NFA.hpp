@@ -17,7 +17,7 @@ class NFA
 
     std::vector<std::map<char, std::set<int>>> transitions;   // delta
 
-    static char lambda;     // simbolul asociat lui lambda
+    static char lambda;     // lambda input symbol
     static const std::string SIGMA;
 public:
     NFA();
