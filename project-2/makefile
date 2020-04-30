@@ -1,5 +1,9 @@
-SCR_PARAMS = *.cpp
+# MakeFile - Linux
+
+SRC_PARAMS = main.cpp src/*.cpp
+INC_PARAMS = inc/
+flags_all = -std=c++11 -g 
 
 all:
-	g++ $(SCR_PARAMS)
+	g++ $(flags_all) -I$(INC_PARAMS) $(SRC_PARAMS)
 	./a.out
