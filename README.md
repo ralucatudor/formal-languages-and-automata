@@ -5,7 +5,7 @@ My projects for FLA
 - NFA (Nondeterministic Finite Automaton) - and implicitly DFA (Deterministic Finite Automaton) - Membership;
 - Generating the shortest 100 words accepted by an automaton.
 
-### Project no. 2
+### [Project no. 2](project-2)
 Conversion of Lambda-NFA to Minimal DFA
 
-### Project no. 3
+### [Project no. 3](project-3)
