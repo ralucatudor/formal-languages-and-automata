@@ -123,9 +123,11 @@ NFA::operator DFA()
     queue.push(aux);
     if (final_states.find(start_state) != final_states.end())    // it is final state
         new_final_states.insert(current_index);
-    state_subset_index[aux] = current_index++;
+    state_subset_index[aux] = current_index;
     new_transitions.emplace_back(std::map<char, int>());
     aux.clear();
+
+    ++current_index;
 
     while (!queue.empty()) {
         std::set<int> current_states = queue.front();
@@ -142,7 +144,8 @@ NFA::operator DFA()
                 continue;
          
             if (state_subset_index.find(aux) == state_subset_index.end()) {
-                state_subset_index[aux] = current_index++;
+                state_subset_index[aux] = current_index;
+                ++current_index;
                 for (auto& q : aux) {
                     if (final_states.find(q) != final_states.end())    // is final state
                         new_final_states.insert(state_subset_index[aux]);
