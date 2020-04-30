@@ -108,7 +108,7 @@ void NFA::convert_lambda_NFA_to_NFA()
 NFA::operator DFA()
 {
     std::vector <std::map <char, int>> new_transitions;
-    new_transitions.emplace_back(); // because the state count starts at 1, therefore pos zero is not used :( )
+    new_transitions.emplace_back(); // because the state count starts at 1, therefore pos zero is not used :(
 
     int new_start_state = start_state;
     std::set <int> new_final_states; 
