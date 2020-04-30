@@ -1,5 +1,7 @@
 # formal-languages-and-automata
-My projects for FLA
+![GitHub top language](https://img.shields.io/github/languages/top/ralucatudor/formal-languages-and-automata)
+![TLOC](https://tokei.rs/b1/github/ralucatudor/formal-languages-and-automata)
+
 
 ### [Project no. 1](project-1)
 - NFA (Nondeterministic Finite Automaton) - and implicitly DFA (Deterministic Finite Automaton) - Membership;
