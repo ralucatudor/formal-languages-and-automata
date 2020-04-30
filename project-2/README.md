@@ -5,6 +5,8 @@ Implement Lambda-NFA to minimal DFA, as follows:
 - NFA to DFA
 - DFA minimization
 
+![minDFA_example](img/minDFA_example.jpg)
+
 ### DFA Minimization
 Implemented DFA Minimization using Myhill-Nerode Theorem\
 Complexity: O(|SIGMA|*|Q|^2) - SIGMA = input alphabet, Q = finite non-empty set of states
