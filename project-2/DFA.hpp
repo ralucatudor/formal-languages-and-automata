@@ -31,7 +31,7 @@ public:
 
     bool isReachableState(int) const;
 
-    void minimize();
+    DFA minimize();
 };
 
 #endif // DFA_HPP_INCLUDED

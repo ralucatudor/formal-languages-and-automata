@@ -1,35 +1,59 @@
 The read automaton:
-Number of states = 4
+Number of states = 6
 1 --a--> 2
-1 --a--> 3
-2 --a--> 2
-2 --a--> 3
-3 --b--> 2
-3 --b--> 4
-4 --a--> 2
-4 --a--> 3
+1 --b--> 3
+2 --a--> 1
+2 --b--> 4
+3 --a--> 5
+3 --b--> 6
+4 --a--> 5
+4 --b--> 6
+5 --a--> 5
+5 --b--> 6
+6 --a--> 6
+6 --b--> 6
 Initial state = 1
-Final state(s): 1 2 
+Final state(s): 3 4 5 
 
 After lambda-Transition Removal:
-Number of states = 4
+Number of states = 6
 1 --a--> 2
-1 --a--> 3
-2 --a--> 2
-2 --a--> 3
-3 --b--> 2
-3 --b--> 4
-4 --a--> 2
-4 --a--> 3
+1 --b--> 3
+2 --a--> 1
+2 --b--> 4
+3 --a--> 5
+3 --b--> 6
+4 --a--> 5
+4 --b--> 6
+5 --a--> 5
+5 --b--> 6
+6 --a--> 6
+6 --b--> 6
 Initial state = 1
-Final state(s): 1 2 
+Final state(s): 3 4 5 
 
 After transformation of NFA to DFA:
-Number of states = 3
+Number of states = 6
 1 --a--> 2
-2 --a--> 2
-2 --b--> 3
-3 --a--> 2
+1 --b--> 3
+2 --a--> 1
+2 --b--> 4
+3 --a--> 5
+3 --b--> 6
+4 --a--> 5
+4 --b--> 6
+5 --a--> 5
+5 --b--> 6
+6 --a--> 6
+6 --b--> 6
 Initial state = 1
-Final state(s): 1 2 3 
+Final state(s): 3 4 5 
+
+After DFA minimization:
+Number of states = 3
+1 --a--> 1
+1 --b--> 2
+2 --a--> 2
+Initial state = 1
+Final state(s): 2 
 

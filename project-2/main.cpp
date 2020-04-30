@@ -21,7 +21,7 @@ int main()
 
     outputFile << "After transformation of NFA to DFA:\n" << dfa << '\n';
 
-    dfa.minimize();
+    dfa = dfa.minimize();
 
     outputFile << "After DFA minimization:\n" << dfa << '\n';
 

@@ -86,7 +86,7 @@ bool DFA::isReachableState(int state) const
 }
 
 // DFA Minimization using Myhill-Nerode Theorem
-void DFA::minimize()
+DFA DFA::minimize()
 {
     markUnreachableStates();
     markDeadStates();
@@ -156,13 +156,45 @@ void DFA::minimize()
         }
     }
 
-    for (auto& new_state : groups) {
-        for (auto& elem : new_state) {
-            std::cout << elem << ' ';
+    // for (auto& new_state : groups) {
+    //     for (auto& elem : new_state) {
+    //         std::cout << elem << ' ';
+    //     }
+    //     std::cout << '\n';
+    // }
+
+    std::vector <int> state_index(nr_states);
+
+    for (size_t index = 0; index < (int)groups.size(); ++index) {
+        for (auto& state : groups[index]) {
+            state_index[state] = index + 1;
         }
-        std::cout << '\n';
     }
 
+    // for (int state = 1; state < nr_states; ++state)
+    //     std::cout << state_index[state] << ' ';
 
+    int new_nr_states = (int)groups.size() + 1;
 
+    int new_start_state = state_index[start_state];
+    std::set<int> new_final_states;
+    std::vector<std::map<char, int>> new_transitions(new_nr_states);
+
+    for (int new_state = 1; new_state < new_nr_states; ++new_state) {
+        int state = *groups[new_state - 1].begin();     // I choose the first state of the current group
+        // all states in the group are equivalent, so I may choose any state
+        if (final_states.find(state) != final_states.end()) {
+            new_final_states.insert(new_state);
+        }
+
+        for (auto map : transitions[state]) {
+            if (map.second) {
+                if (isReachableState(map.second)) {
+                    new_transitions[new_state][map.first] = state_index[map.second];
+                }
+            }
+        }
+    }
+
+    return DFA(new_transitions, new_start_state, new_final_states);
 }
