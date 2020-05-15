@@ -15,10 +15,10 @@ int main()
     // Regular Grammar to NFA
     G.convertToLambdaFreeRegularGrammar();
 
-    outputFile << "\nThe generated NFA is the following:\n";
+    outputFile << "\nThe equivalent NFA is the following:\n";
     G.getNFA(outputFile);
 
-    // ecplicit conversion
+    // explicit conversion
     NFA automaton = NFA(G);
     outputFile << "\nNFA:\n";
     outputFile << automaton << '\n';

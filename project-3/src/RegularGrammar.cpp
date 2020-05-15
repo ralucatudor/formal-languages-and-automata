@@ -56,7 +56,7 @@ void RegularGrammar::convertToLambdaFreeRegularGrammar()
     }
     // Note: assume that S is the start symbol.
     // if S->lambda was in the original set of rules, add a new start symbol S1 in G', add the rule S1->lambda
-    // and copy all the production rules with S on the left hand side to ones with S' on the left hand side. 
+    // and copy all the production rules with S on the left hand side to ones with S1 on the left hand side. 
     if (hasLambdaProduction.find("S") != hasLambdaProduction.end())
     {
         hasLambdaProduction.clear();
@@ -72,7 +72,7 @@ void RegularGrammar::convertToLambdaFreeRegularGrammar()
 
 void RegularGrammar::getNFA(std::ostream& out) 
 {
-    int nr_states = productions.size() + 1; // + 1 from another terminal state D
+    int nr_states = productions.size() + 1; // + 1 because I add another state, D (final state)
 
     out << nr_states << '\n';
 
@@ -113,14 +113,13 @@ void RegularGrammar::getNFA(std::ostream& out)
                 out << lhs << " D " << rhs << '\n';
             }
             else {
-                // for every production AaB in G, add a transition from state A to state B labelled with terminal a; 
+                // for every production A->aB in G, add a transition from state A to state B labelled with terminal a; 
                 out << lhs << " " << rhs.substr(rhs.size() - 1) << " " << rhs.substr(0, rhs.size() - 1) << '\n';
             }
         }
     }
 
     out << start_state << '\n';
-
     
     out << final_states.size() << '\n';
     for (auto& final_state : final_states) {
@@ -137,7 +136,7 @@ RegularGrammar::operator NFA()
     // In this way, I'll maintain the rule state1 --character--> state2 from the NFA class
     // (not state1 --string--> state2)
 
-    std::map <std::string, int> stateIndex;
+    std::map <std::string, int> stateIndex;     // renaming the states
     unsigned stateCount = 1;
     for (auto& production : productions) {
         std::string lhs = production.first;
@@ -164,7 +163,6 @@ RegularGrammar::operator NFA()
     // plus state D
     final_states.insert(stateIndex["D"]);
     
-   
     std::vector<std::map<char, std::set<int>>> transitions(stateCount + 1); 
     for (auto& production : productions) {
         std::string lhs = production.first;
