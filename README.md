@@ -9,3 +9,4 @@
 Conversion of Lambda-NFA to Minimal DFA
 
 ### [Project no. 3](project-3)
+Regular Grammar -> Lambda-Free Regular Grammar-> Equivalent Finite State Automaton (NFA) -> DFA

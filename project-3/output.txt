@@ -54,10 +54,3 @@ Number of states = 5
 Initial state = 4
 Final state(s): 1 2 3 4 5 
 
-After DFA minimization:
-Number of states = 1
-1 --a--> 1
-1 --b--> 1
-Initial state = 1
-Final state(s): 1 
-

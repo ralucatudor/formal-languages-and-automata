@@ -132,6 +132,11 @@ void RegularGrammar::getNFA(std::ostream& out)
 
 RegularGrammar::operator NFA()
 {
+    // For this conversion to NFA, I'll assume that the rhs of any production is either a or aB, 
+    // where a in SIGMA (union lambda, of course), not SIGMA*! (as these definitions are equivalent)
+    // In this way, I'll maintain the rule state1 --character--> state2 from the NFA class
+    // (not state1 --string--> state2)
+
     std::map <std::string, int> stateIndex;
     unsigned stateCount = 1;
     for (auto& production : productions) {
