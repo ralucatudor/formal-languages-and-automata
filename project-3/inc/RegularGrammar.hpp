@@ -6,6 +6,8 @@
 #include <map>
 #include <set>
 
+#include "NFA.hpp"
+
 class RegularGrammar 
 {
     static std::string lambda;  
@@ -22,4 +24,8 @@ public:
     friend std::ostream& operator << (std::ostream&, const RegularGrammar&);
 
     void convertToLambdaFreeRegularGrammar();
+
+    void getNFA(std::ostream&);
+    
+    explicit operator NFA();
 };

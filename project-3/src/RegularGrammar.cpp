@@ -4,6 +4,7 @@ std::string RegularGrammar::lambda = "$";
 
 RegularGrammar::RegularGrammar() {}
 
+
 std::istream& operator >> (std::istream& in, RegularGrammar& grammar)
 {
     std::string lhs, rhs;
@@ -20,6 +21,7 @@ std::istream& operator >> (std::istream& in, RegularGrammar& grammar)
     return in;
 }
 
+
 std::ostream& operator << (std::ostream& out, const RegularGrammar& grammar)
 {
     for (auto& production : grammar.productions) {
@@ -35,6 +37,7 @@ std::ostream& operator << (std::ostream& out, const RegularGrammar& grammar)
     }
     return out;
 }
+
 
 void RegularGrammar::convertToLambdaFreeRegularGrammar() 
 {
@@ -64,4 +67,114 @@ void RegularGrammar::convertToLambdaFreeRegularGrammar()
     else {
         hasLambdaProduction.clear();
     }
+}
+
+
+void RegularGrammar::getNFA(std::ostream& out) 
+{
+    int nr_states = productions.size() + 1; // + 1 from another terminal state D
+
+    out << nr_states << '\n';
+
+    std::string start_state;
+    if (hasLambdaProduction.find("S1") != hasLambdaProduction.end()) {
+        // then S1 is my start state
+        start_state = "S1";
+    }
+    else {
+        start_state = "S";
+    }    
+    
+    int nr_transitions = 0;
+    for (auto& production : productions) {
+        nr_transitions += production.second.size();
+    }
+
+    if (start_state == "S1") {
+        nr_transitions -= 1;        // S1->lambda will not result in a transition
+    }
+
+    out << nr_transitions << '\n';
+
+    std::set <std::string> final_states;
+    // The final states will be those from the hasLambdaProduction set
+    final_states = hasLambdaProduction;
+    // plus state D
+    final_states.insert("D");
+
+
+    for (auto& production : productions) {
+        std::string lhs = production.first;
+        for (auto& rhs : production.second) {
+            if (rhs == lambda) {
+                continue;
+            }
+            if (islower(rhs[rhs.size() - 1])) {
+                out << lhs << " D " << rhs << '\n';
+            }
+            else {
+                // for every production AaB in G, add a transition from state A to state B labelled with terminal a; 
+                out << lhs << " " << rhs.substr(rhs.size() - 1) << " " << rhs.substr(0, rhs.size() - 1) << '\n';
+            }
+        }
+    }
+
+    out << start_state << '\n';
+
+    
+    out << final_states.size() << '\n';
+    for (auto& final_state : final_states) {
+        out << final_state << ' ';
+    }
+    out << '\n';
+}
+
+
+RegularGrammar::operator NFA()
+{
+    std::map <std::string, int> stateIndex;
+    unsigned stateCount = 1;
+    for (auto& production : productions) {
+        std::string lhs = production.first;
+        stateIndex[lhs] = stateCount;
+        stateCount++;
+    }
+    // add another terminal state D
+    stateIndex["D"] = stateCount;
+
+    int start_state;
+    if (hasLambdaProduction.find("S1") != hasLambdaProduction.end()) {
+        // then S1 is my start state
+        start_state = stateIndex["S1"];
+    }
+    else {
+        start_state = stateIndex["S"];
+    }
+
+    std::set<int> final_states; 
+    // The final states will be those from the hasLambdaProduction set
+    for (auto& lhs : hasLambdaProduction) {
+        final_states.insert(stateIndex[lhs]);
+    }
+    // plus state D
+    final_states.insert(stateIndex["D"]);
+    
+   
+    std::vector<std::map<char, std::set<int>>> transitions(stateCount + 1); 
+    for (auto& production : productions) {
+        std::string lhs = production.first;
+        for (auto& rhs : production.second) {
+            if (rhs == lambda) {
+                continue;
+            }
+            if (rhs.size() == 1) {
+                transitions[stateIndex[lhs]][rhs[0]].insert(stateIndex["D"]);
+            }
+            else {
+                transitions[stateIndex[lhs]][rhs[0]].insert(stateIndex[rhs.substr(1)]);
+            }
+        }
+    }
+
+    return NFA(transitions, start_state, final_states);
 }
