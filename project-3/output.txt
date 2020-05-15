@@ -3,7 +3,7 @@ A : aA aS
 B : cS $
 S : a aA bB $
 
-The generated NFA is the following:
+The equivalent NFA is the following:
 5
 13
 A D a
