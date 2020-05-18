@@ -79,15 +79,18 @@ bool Automaton::isAccepted(std::string word)
             }
         }
 
-        for(auto& node : temp)
+        for(auto& node : temp) {
             inQueue[node] = 0;
+        }
 
         q = temp;   // the next states will become current states
     }
 
-    for(auto& node : q)
-        if (final_states.find(node) != final_states.end())
+    for(auto& node : q) {
+        if (final_states.find(node) != final_states.end()) {
             return true;
+        }
+    }
     return false;
 }
 
@@ -141,6 +144,3 @@ std::vector<std::string> Automaton::smallestAcceptedWords(int total_words) const
 
     return accepted_words;
 }
-
-
-
