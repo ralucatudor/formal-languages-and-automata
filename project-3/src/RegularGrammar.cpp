@@ -45,7 +45,7 @@ void RegularGrammar::convertToLambdaFreeRegularGrammar()
         std::string lhs = production.first;
         // if N->lambda is in G, copy every rule in which N appears on the right hand side both with and without N
         for (auto& rhs : production.second) {
-            if (rhs.size() > 1 && isupper(rhs[rhs.size() - 1])) {   // Assume that we are given a left-linear grammar
+            if (rhs.size() > 1 && isupper(rhs[rhs.size() - 1])) {   // Assume that we are given a right-linear grammar
                 std::string nonTerminal = rhs.substr(rhs.size() - 1);
                 if (hasLambdaProduction.find(nonTerminal) != hasLambdaProduction.end()) {
                     std::string str = rhs.substr(0, rhs.size() - 1);
